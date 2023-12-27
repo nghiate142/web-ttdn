@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const db = require("./db/index");
 const morgan = require('morgan');
 const { sequelize } = require('./db/index');
-const userRoutes = require('./routes/user.router');
 
 require('dotenv').config();
 const port = process.env.PORT || 3000;
@@ -14,12 +13,18 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-const user = require("./routes/user.router");
+    (async () => {
+        await db.sequelize.sync();
+    })();
 
-app.use("/user", user);
+const userRoutes = require('./routes/user.router');
+const authRoutes = require('./routes/auth.router');
+const categoryRouter = require('./routes/category.router');
+const newRouter = require('./routes/new.router');
 
-(async () => {
-    await db.sequelize.sync();
-})();
-const server = app.listen(port, () => {
+app.use("/user", userRoutes);
+app.use("/auth", authRoutes);
+app.use("/category", categoryRouter);
+app.use("/new", newRouter);
+app.listen(port, () => {
 });

@@ -1,23 +1,18 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define("Categories", {
+    return sequelize.define("Images", {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             allowNull: false,
             primaryKey: true,
         },
-        name: {
+        title: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        description: {
+        link: {
             type: DataTypes.STRING,
-            allowNull: true,
-        },
-        status: {
-            type: DataTypes.ENUM('0','1'),
             allowNull: false,
-            defaultValue: '1'
-        }
+        },
     });
 };

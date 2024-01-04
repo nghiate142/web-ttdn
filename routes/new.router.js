@@ -5,6 +5,7 @@ const router = express.Router();
 router.get('/', news.getAll);
 router.get('/:id', news.getById);
 router.post('/', news.create);
+router.get('/category', news.findByCategory)
 router.put('/:id', news.update);
 router.delete('/:id', news.delete);
 

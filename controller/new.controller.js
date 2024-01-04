@@ -3,14 +3,20 @@ const newService = require('../service/news.service')
 
 class NewController {
     async getAll(req, res) {
-        // const data = await users.findAll();
-        // res.json(data);
+        const data = await newService.findAll();
+        res.status(200).json({message: 'create success', data: data, status: 200})
     }
 
     async getById(req, res) {
         const id = req.params.id;
-        // const data = await users.findByPk(id);
-        // res.json(data);
+        const data = await newService.findById(id)
+        res.status(200).json({message: 'create success', data: data, status: 200})
+    }
+
+    async findByCategory(req, res) {
+        const id = req.body.category_id
+        const data = await newService.findByCategory(id)
+        res.status(200).json({message: 'create success', data: data, status: 200})
     }
 
     async create(req, res) {
@@ -25,15 +31,14 @@ class NewController {
     async update(req, res) {
         const id = req.params.id;
         const data = req.body;
-        // await users.update(data, { where: { id } });
-        // const updatedEntity = await users.findByPk(id);
-        // res.json(updatedEntity);
+        const update = await newService.update(id, data)
+        res.status(200).json({message: 'create success', data: update, status: 200})
     }
 
     async delete(req, res) {
         const id = req.params.id;
-        // await users.destroy({ where: { id } });
-        res.json({ message: 'Entity deleted successfully' });
+        await newService.delete(id)
+        res.status(200).json({ message: 'Entity deleted successfully', status: 200 });
     }
 }
 

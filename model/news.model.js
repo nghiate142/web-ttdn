@@ -12,23 +12,20 @@ module.exports = (sequelize, DataTypes) => {
         },
         image: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         video: {
             type: DataTypes.STRING,
-            allowNull: false,
-        },
-        status: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        category_id: {
-            type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         content: {
             type: DataTypes.STRING,
             allowNull: false,
+        },
+        status: {
+            type: DataTypes.ENUM('0', '1'),
+            allowNull: false,
+            defaultValue: '1'
         }
     });
 };

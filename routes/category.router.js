@@ -6,6 +6,7 @@ const router = express.Router();
 router.get('/', category.getAll);
 router.get('/:id', category.getById);
 router.post('/', category.create);
+router.put('/status/:id', category.updateStatus)
 router.put('/:id', category.update);
 router.delete('/:id', category.delete);
 

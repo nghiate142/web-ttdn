@@ -1,4 +1,5 @@
 const userDao = require("../dao/users.dao")
+const bcrypt = require("bcryptjs");
 class AuthService {
     async login(data) {
         const username = data.username
@@ -7,7 +8,11 @@ class AuthService {
         if (findUser === null) {
             return 'user not found'
         }
-        console.log(findUser)
+        const checkPassword = await bcrypt.compare(password, findUser.password)
+        if (!checkPassword) {
+            return 'false password'
+        }
+        return 'success'
     }
 }
 

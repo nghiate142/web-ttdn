@@ -1,5 +1,5 @@
-const Categories = require('../model/categories.model');
 const db = require("../db/index");
+const newService = require('../service/news.service')
 
 class NewController {
     async getAll(req, res) {
@@ -15,8 +15,11 @@ class NewController {
 
     async create(req, res) {
         const data = req.body;
-        const newEntity = await db.models.News.create(data);
-        res.json(newEntity);
+        const create = await newService.create(data);
+        if (create === 'category not found') {
+            return res.status(400).json({message: 'category not found', status: 400})
+        }
+        res.status(200).json({message: 'create success', data: create, status: 200})
     }
 
     async update(req, res) {

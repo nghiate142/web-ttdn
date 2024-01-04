@@ -1,4 +1,3 @@
-const users = require('../model/users.model');
 const db = require("../db/index");
 const bcrypt = require("bcryptjs");
 

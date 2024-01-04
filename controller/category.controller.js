@@ -1,37 +1,42 @@
 const Categories = require('../model/categories.model');
-const db = require("../db/index");
-const bcrypt = require("bcryptjs");
+const categoryService = require('../service/categories.service')
 
 class CategoryController {
     async getAll(req, res) {
-        // const data = await users.findAll();
-        // res.json(data);
+        const data = await categoryService.findAll();
+        res.status(200).json({message: 'success', data: data, status: 200});
     }
 
     async getById(req, res) {
         const id = req.params.id;
-        // const data = await users.findByPk(id);
-        // res.json(data);
+        const data = await categoryService.findById(id)
+        res.status(200).json({message: 'success', data: data, status: 200});
     }
 
     async create(req, res) {
-        const data = req.body;
-        const newEntity = await db.models.Categories.create(data);
-        res.json(newEntity);
+        const data = req.body
+        const create = await categoryService.create(data)
+        res.status(200).json({message: 'create success', data: create, status: 200})
     }
 
     async update(req, res) {
         const id = req.params.id;
         const data = req.body;
-        // await users.update(data, { where: { id } });
-        // const updatedEntity = await users.findByPk(id);
-        // res.json(updatedEntity);
+        console.log(id)
+        const update = await categoryService.update(id, data)
+        res.status(200).json({message: 'update success', data: update, status: 200})
+    }
+
+    async updateStatus(req, res) {
+        const id = req.params.id;
+        const update = await categoryService.updateStatus(id)
+        res.status(200).json({message: 'update success', data: update, status: 200})
     }
 
     async delete(req, res) {
         const id = req.params.id;
-        // await users.destroy({ where: { id } });
-        res.json({ message: 'Entity deleted successfully' });
+        await categoryService.delete(id)
+        res.status(200).json({message: 'delete success', status: 200})
     }
 }
 

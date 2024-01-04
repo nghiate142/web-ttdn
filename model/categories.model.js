@@ -15,8 +15,9 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         status: {
-            type: DataTypes.STRING,
+            type: DataTypes.ENUM('0','1'),
             allowNull: false,
+            defaultValue: '1'
         }
     });
 };

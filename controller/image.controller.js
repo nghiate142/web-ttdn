@@ -1,17 +1,17 @@
-const fileServer = require("../service/file.service")
+const fileService = require("../service/file.service")
 
 class ImageController {
-    async uploadVideo(req, res) {
-        try {
-            const videoPath = req.file.path;
+    async uploadImage(req, res) {
+        console.log(req.file.path)
+            const link = req.file.path;
             const { title } = req.body;
-
-            const newVideo = await Video.create({ title, path: videoPath });
-
+            const data = {
+                link: link,
+                title: title
+            };
+            const newVideo = await fileService.uploadImage(data);
             res.json({ success: true, data: newVideo });
-        } catch (error) {
-            console.error('Error uploading video:', error);
-            res.status(500).json({ error: 'Internal Server Error' });
-        }
     }
 }
+
+module.exports = new ImageController();

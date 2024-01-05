@@ -1,7 +1,10 @@
 module.exports = {
-  HOST: "localhost",
-  USER: "root",
-  PASSWORD: "123456a@",
-  DATABASE: "ttdn",
-  DIALECT: "mysql",
+  development: {
+    username: 'root',
+    password: '123456789a@',
+    database: 'ttdn',
+    host: 'localhost',
+    dialect: 'mysql',
+  },
 };
+

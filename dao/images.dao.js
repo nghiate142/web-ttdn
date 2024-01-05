@@ -1,12 +1,16 @@
 const db = require("../db/index");
 class ImagesDao {
     async create(data) {
-        const idCategory = data.CategoryId
-        const findCategory = await db.models.Image.findOne({ where: { id: idCategory } })
-        if (findCategory === null) {
-            return 'category not found'
+        try {
+            const idCategory = data.CategoryId
+            const findCategory = await db.models.Image.findOne({ where: { id: idCategory } })
+            if (findCategory === null) {
+                return 'category not found'
+            }
+            return db.models.Image.create(data);
+        } catch (error) {
+            throw 'upload image error'
         }
-        return db.models.Image.create(data);
     }
 
     async findAll() {

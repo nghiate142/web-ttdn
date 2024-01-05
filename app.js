@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const db = require("./db/index");
 const cors = require('cors');
+const multer = require('multer');
 const morgan = require('morgan');
 
 require('dotenv').config();
@@ -14,17 +15,36 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    },
+});
+
+const upload = multer({ storage: storage });
+
+
 const userRoutes = require('./routes/user.router');
 const authRoutes = require('./routes/auth.router');
 const categoryRouter = require('./routes/category.router');
 const newRouter = require('./routes/new.router');
+const videoRouter = require('./routes/video.router');
+const imageRouter = require('./routes/image.router');
 
 (async () => {
     await db.sequelize.sync();
 })();
 
+
 app.use("/user", userRoutes);
 app.use("/auth", authRoutes);
 app.use("/category", categoryRouter);
 app.use("/new", newRouter);
+app.use("/upload-video", videoRouter);
+app.use("/upload-image", imageRouter);
+
+
 app.listen(port);

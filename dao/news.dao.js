@@ -10,7 +10,23 @@ class NewsDao {
     }
 
     async findAll() {
-        return await db.models.News.findAll()
+        try {
+            const data = await db.models.News.findAll({include: [{ model: db.models.Categories, attributes: ['name'] }]})
+            return data.map(news => {
+                return {
+                    id: news.id,
+                    title: news.title,
+                    content: news.content,
+                    short_title: news.shortTitle,
+                    link_image: news.image,
+                    link_video: news.video,
+                    category_id: news.CategoryId,
+                    category_name: news.Category ? news.Category.name : null
+                };
+            });
+        } catch (error) {
+            throw error;
+        }
     }
 
     async findById(id) {

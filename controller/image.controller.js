@@ -3,6 +3,7 @@ const fileService = require("../service/file.service")
 class ImageController {
     async uploadImage(req, res) {
         try {
+            console.log(req.file)
             const videoPath = req.file.path;
             const { title } = req.body;
 

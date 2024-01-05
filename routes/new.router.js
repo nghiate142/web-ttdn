@@ -4,9 +4,9 @@ const { checkToken } = require("../controller/auth.controller");
 const router = express.Router();
 
 router.get('/', checkToken, news.getAll);
-router.get('/:id', checkToken, news.getById);
 router.post('/', checkToken, news.create);
-router.get('/category', checkToken, news.findByCategory)
+router.get('/category-id', checkToken, news.findByCategory)
+router.get('/:id', checkToken, news.getById);
 router.put('/:id', checkToken, news.update);
 router.delete('/:id', checkToken, news.delete);
 

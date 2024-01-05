@@ -17,12 +17,8 @@ class ImagesDao {
         return await db.models.Image.findOne({ where: { id: id } })
     }
 
-    async findByCategory(id) {
-        return await db.models.Image.find({ where: { CategoryId: id } })
-    }
-
     async delete(id) {
-        return await db.models.Image.destroy({where: {id: id}})
+        return await db.models.Image.destroy({ where: { id: id } })
     }
 }
 

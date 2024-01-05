@@ -18,8 +18,8 @@ class VideoController {
         const id = req.params.id
         const url = process.env.URL
         const image = await fileService.getUrlVideo(id)
-        const imageUrl = `${url}${image.link}`;
-        return res.status(200).json({ success: true, data: imageUrl });
+        const videoUrl = `${url}${image.link}`;
+        return res.status(200).json({ success: true, data: videoUrl });
     }
 
     async getAll(req, res) {

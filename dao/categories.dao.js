@@ -2,7 +2,11 @@ const db = require("../db/index");
 
 class CategoriesDao {
     async create(data) {
-        return db.models.Categories.create(data);
+        try {
+            return await db.models.Categories.create(data);
+        } catch (error) {
+            return false
+        }
     }
 
     async get() {

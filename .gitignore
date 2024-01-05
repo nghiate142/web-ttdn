@@ -1,3 +1,5 @@
 # compiled output
 /node_modules
 .env
+/uploads
+/image

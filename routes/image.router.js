@@ -5,5 +5,6 @@ const multer = require('multer');
 const upload = multer({ dest: 'image/' });
 
 router.post('/',upload.single('link'), image.uploadImage);
+router.get('/:id')
 
 module.exports = router;

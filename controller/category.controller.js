@@ -14,9 +14,16 @@ class CategoryController {
     }
 
     async create(req, res) {
-        const data = req.body
-        const create = await categoryService.create(data)
-        res.status(200).json({message: 'create success', data: create, status: 200})
+        try {
+            const data = req.body
+            const create = await categoryService.create(data)
+            if (!create) {
+                res.status(400).json({message: 'error'})
+            }
+            res.status(200).json({message: 'create success', data: create, status: 200})
+        } catch (error) {
+            return false
+        }
     }
 
     async update(req, res) {

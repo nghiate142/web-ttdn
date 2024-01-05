@@ -22,7 +22,7 @@ const upload = multer({
         }
     },
 });
-router.post('/', checkToken, upload.single('link'), image.uploadImage);
+router.post('/', upload.single('link'), image.uploadImage);
 router.get('/:id', image.getUrlImage)
 router.get('/', checkToken, image.getAll)
 

@@ -29,6 +29,8 @@ class NewsDao {
                     title: news.title,
                     content: news.content,
                     short_title: news.shortTitle,
+                    link_image: news.image,
+                    link_video: news.video,
                     category_name: news.Category ? news.Category.name : null
                 };
             });

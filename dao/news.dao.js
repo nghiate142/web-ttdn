@@ -26,7 +26,11 @@ class NewsDao {
     }
 
     async delete(id) {
-        return await db.models.News.destroy(id)
+        return await db.models.News.destroy({
+            where: {
+                id: id
+              }
+        })
     }
 }
 

@@ -1,11 +1,10 @@
 const userDao = require('../dao/users.dao')
+const bcrypt = require("bcryptjs");
 class UsersService {
     async create (data) {
-        const create = await userDao.create(data)
-        if (create === 'category not found') {
-            return 'category not found'
-        }
-        return create
+        const salt = bcrypt.genSaltSync(10);
+        data.password = await bcrypt.hashSync(data.password, salt)
+        return await userDao.create(data)
     }
     async findAll() {
         return await userDao.getAll()
@@ -20,6 +19,8 @@ class UsersService {
     }
 
     async update(id, data) {
+        const salt = bcrypt.genSaltSync(10);
+        data.password = await bcrypt.hashSync(data.password, salt)
         await userDao.update(id, data)
         return await this.findById(id)
     }

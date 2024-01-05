@@ -1,5 +1,5 @@
 const userService = require('../service/users.service')
-const bcrypt = require("bcryptjs");
+
 
 class UserController {
     async getAll(req, res) {
@@ -15,8 +15,6 @@ class UserController {
 
     async create(req, res) {
         const data = req.body;
-        const salt = bcrypt.genSaltSync(10);
-        data.password = await bcrypt.hashSync(data.password, salt)
         const newEntity = await userService.create(data);
         res.status(200).json({message: 'success', data: newEntity});
     }
@@ -24,8 +22,6 @@ class UserController {
     async update(req, res) {
         const id = req.params.id;
         const data = req.body;
-        const salt = bcrypt.genSaltSync(10);
-        data.password = await bcrypt.hashSync(data.password, salt)
         const updatedEntity = await userService.update(id, data);
         res.status(200).json({message: 'success', data: updatedEntity});
     }

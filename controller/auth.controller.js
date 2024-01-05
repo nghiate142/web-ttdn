@@ -7,7 +7,7 @@ async function login(req, res) {
     const data = req.body;
     try {
         const user = await authService.login(data);
-        const accessToken = jwt.sign({ userId: user.id }, 'your-secret-key', { expiresIn: '24h' });
+        const accessToken = jwt.sign({ userId: user.id }, process.env.SECRET, { expiresIn: '24h' });
         loggedInUsers[user.id] = accessToken;
         res.status(200).json({
             message: 'Login success',
@@ -37,7 +37,7 @@ function checkToken(req, res, next) {
     }
 
     try {
-        const payload = jwt.verify(token, 'your-secret-key');
+        const payload = jwt.verify(token, process.env.SECRET);
         if (loggedInUsers[payload.userId] === token) {
             req.userId = payload.userId;
             next();

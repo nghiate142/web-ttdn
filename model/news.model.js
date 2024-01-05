@@ -22,9 +22,14 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        shortTitle: {
+        shorTitle: {
             type: DataTypes.STRING,
             allowNull: true
+        },
+        host_new: {
+            type: DataTypes.ENUM(false, true),
+            allowNull: false,
+            defaultValue: false
         },
         status: {
             type: DataTypes.ENUM('0', '1'),

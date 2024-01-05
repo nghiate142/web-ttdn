@@ -29,7 +29,6 @@ class CategoryController {
     async update(req, res) {
         const id = req.params.id;
         const data = req.body;
-        console.log(id)
         const update = await categoryService.update(id, data)
         res.status(200).json({message: 'update success', data: update, status: 200})
     }

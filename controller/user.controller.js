@@ -1,39 +1,39 @@
-const users = require('../model/users.model');
-const db = require("../db/index");
+const userService = require('../service/users.service')
 const bcrypt = require("bcryptjs");
 
 class UserController {
     async getAll(req, res) {
-        const data = await users.findAll();
-        res.json(data);
+        const data = await userService.findAll();
+        res.status(200).json({message: 'success', data: data});
     }
 
     async getById(req, res) {
         const id = req.params.id;
-        const data = await users.findByPk(id);
-        res.json(data);
+        const data = await userService.findById(id);
+        res.status(200).json({message: 'success', data: data});
     }
 
     async create(req, res) {
         const data = req.body;
         const salt = bcrypt.genSaltSync(10);
         data.password = await bcrypt.hashSync(data.password, salt)
-        const newEntity = await db.models.Users.create(data);
-        res.json(newEntity);
+        const newEntity = await userService.create(data);
+        res.status(200).json({message: 'success', data: newEntity});
     }
 
     async update(req, res) {
         const id = req.params.id;
         const data = req.body;
-        await users.update(data, { where: { id } });
-        const updatedEntity = await users.findByPk(id);
-        res.json(updatedEntity);
+        const salt = bcrypt.genSaltSync(10);
+        data.password = await bcrypt.hashSync(data.password, salt)
+        const updatedEntity = await userService.update(id, data);
+        res.status(200).json({message: 'success', data: updatedEntity});
     }
 
     async delete(req, res) {
         const id = req.params.id;
-        await users.destroy({ where: { id } });
-        res.json({ message: 'Entity deleted successfully' });
+        await userService.delete(id);
+        res.status(200).json({message: 'delete success'});
     }
 }
 

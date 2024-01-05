@@ -3,10 +3,12 @@ const fileService = require("../service/file.service");
 
 class VideoController {
     async uploadVideo(req, res) {
-        const link = req.file.path;
+        const link = req.file;
         const { title } = req.body;
+        const originalNameWithoutExtension = link.originalname.split('.')[0];
+        link.path = `${link.destination}${originalNameWithoutExtension}-${link.filename}`;
         const data = {
-            link: link,
+            link: link.path,
             title: title
         };
         console.log(link)
@@ -25,6 +27,12 @@ class VideoController {
     async getAll(req, res) {
         const data = await fileService.getAllVideo()
         res.status(200).json({ success: true, data: data });
+    }
+
+    async delete(req, res) {
+        const id = req.params.id
+        await fileService.deleteVideo(id)
+        res.status(200).json({ success: 'delete success' });
     }
 }
 

@@ -1,6 +1,4 @@
-const users = require('../model/users.model');
-const db = require("../db/index");
-const userService = require("../service/auth.service")
+const authService = require("../service/auth.service")
 const jwt = require('jsonwebtoken');
 
 const loggedInUsers = {};
@@ -8,7 +6,7 @@ const loggedInUsers = {};
 async function login(req, res) {
     const data = req.body;
     try {
-        const user = await userService.login(data);
+        const user = await authService.login(data);
         const accessToken = jwt.sign({ userId: user.id }, 'your-secret-key', { expiresIn: '24h' });
         loggedInUsers[user.id] = accessToken;
         res.status(200).json({

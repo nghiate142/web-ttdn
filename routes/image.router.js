@@ -25,6 +25,7 @@ const upload = multer({
 router.post('/', upload.single('link'), image.uploadImage);
 router.get('/:id', image.getUrlImage)
 router.get('/', checkToken, image.getAll)
+router.delete('/:id', checkToken, image.delete)
 
 router.use((err, req, res, next) => {
     if (err instanceof multer.MulterError) {

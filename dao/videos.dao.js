@@ -13,7 +13,7 @@ class VideosDao {
     }
 
     async delete(id) {
-        return await db.models.Videos.destroy(id)
+        return await db.models.Videos.destroy({ where: { id: id } })
     }
 }
 

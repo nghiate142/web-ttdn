@@ -21,12 +21,8 @@ class ImagesDao {
         return await db.models.Image.find({ where: { CategoryId: id } })
     }
 
-    async update(id, data) {
-        return await db.models.Image.update(data, { where: { id: id } })
-    }
-
     async delete(id) {
-        return await db.models.Image.destroy(id)
+        return await db.models.Image.destroy({where: {id: id}})
     }
 }
 

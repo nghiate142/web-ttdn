@@ -2,7 +2,7 @@ const fileService = require("../service/file.service")
 
 class ImageController {
     async uploadImage(req, res) {
-        console.log(req.file.path)
+        try {
             const link = req.file.path;
             const { title } = req.body;
             const data = {
@@ -10,7 +10,23 @@ class ImageController {
                 title: title
             };
             const newVideo = await fileService.uploadImage(data);
-            res.json({ success: true, data: newVideo });
+            res.status(200).json({ success: true, data: newVideo });
+        } catch (error) {
+            res.status(400).json({ success: false, error: error.message });
+        }
+    }
+
+    async getUrlImage(req, res) {
+        const id = req.params.id
+        const url = process.env.URL
+        const image = await fileService.getUrlImage(id)
+        const imageUrl = `${url}${image.link}`;
+        return res.status(200).json({ success: true, data: imageUrl });
+    }
+
+    async getAll(req, res) {
+        const data = await fileService.getAllImage()
+        res.status(200).json({ success: true, data: data });
     }
 }
 

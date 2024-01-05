@@ -23,7 +23,7 @@ const upload = multer({
     },
 });
 router.post('/', checkToken, upload.single('link'), image.uploadImage);
-router.get('/:id', checkToken, image.getUrlImage)
+router.get('/:id', image.getUrlImage)
 router.get('/', checkToken, image.getAll)
 
 router.use((err, req, res, next) => {

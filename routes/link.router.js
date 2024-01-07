@@ -1,29 +1,32 @@
 const express = require('express');
 const router = express.Router();
-const audioController = require('../controller/audio.controller');
 const multer = require('multer');
 const path = require('path');
-const { checkToken } = require("../controller/auth.controller");
+const linkController = require("../controller/links.controller")
 
-const isAudio = (file) => {
-    const allowedExtensions = ['.mp3', '.wav', '.ogg'];
+
+const isImage = (file) => {
+    const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
     const fileExtension = path.extname(file.originalname).toLowerCase();
     return allowedExtensions.includes(fileExtension);
 };
-
 const upload = multer({
     dest: 'uploads/',
-    limits: { fileSize: 5 * 1024 * 1024 },
+    limits: { fileSize: 2 * 1024 * 1024 },
     fileFilter: (req, file, cb) => {
-        if (isAudio(file)) {
+        console.log(file)
+        if (isImage(file)) {
             cb(null, true);
         } else {
-            cb(new Error('Only audio files are allowed'));
+            cb(('Only images are allowed'));
         }
     },
 });
-
-router.post('/', upload.single('file'), audioController.uploadAudio);
+router.post('/', upload.single('file'), linkController.create);
+router.get('/', linkController.getAll);
+router.get('/:id', linkController.getById);
+router.put('/:id', linkController.update);
+router.delete('/id', linkController.delete);
 
 router.use((err, req, res, next) => {
     if (err instanceof multer.MulterError) {

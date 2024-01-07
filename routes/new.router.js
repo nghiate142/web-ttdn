@@ -8,7 +8,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 router.get('/', news.getAll);
-router.post('/', checkToken, upload.array('sections', 10), news.create);
+router.post('/', upload.array('sections', 10), news.create);
 router.get('/category-id', news.findByCategory);
 router.get('/host-new/:number', news.getByHostNew)
 router.get('/:id', news.getById);

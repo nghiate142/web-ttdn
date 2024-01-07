@@ -20,6 +20,7 @@ db.models.Users = require("../model/users.model")(sequelize, Sequelize.DataTypes
 db.models.Categories = require("../model/categories.model")(sequelize, Sequelize.DataTypes);
 db.models.News = require("../model/news.model")(sequelize, Sequelize.DataTypes);
 db.models.Image = require("../model/image.model")(sequelize, Sequelize.DataTypes)
+db.models.link = require("../model/links.model")(sequelize, Sequelize.DataTypes)
 
 
 db.models.Categories.hasMany(db.models.News)

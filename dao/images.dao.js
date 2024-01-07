@@ -2,7 +2,6 @@ const db = require("../db/index");
 class ImagesDao {
     async create(data) {
         try {
-            console.log('db.models.Image.create', data)
             return db.models.Image.create(data);
         } catch (error) {
             console.log(error)

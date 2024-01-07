@@ -1,6 +1,6 @@
 const newDao = require('../dao/news.dao')
 class NewsService {
-    async create (data) {
+    async create(data) {
         const create = await newDao.create(data)
         if (create === 'category not found') {
             return 'category not found'
@@ -24,7 +24,7 @@ class NewsService {
     }
 
     async delete(id) {
-    return await newDao.delete(id)
+        return await newDao.delete(id)
     }
 }
 

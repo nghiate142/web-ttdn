@@ -5,6 +5,8 @@ const multer = require('multer');
 const path = require('path');
 const { checkToken } = require("../controller/auth.controller");
 
+
+let nameFile;
 const isImage = (file) => {
     const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
     const fileExtension = path.extname(file.originalname).toLowerCase();
@@ -15,6 +17,7 @@ const upload = multer({
     dest: 'image/',
     limits: { fileSize: 2 * 1024 * 1024 },
     fileFilter: (req, file, cb) => {
+        console.log(isImage(file))
         if (isImage(file)) {
             cb(null, true);
         } else {

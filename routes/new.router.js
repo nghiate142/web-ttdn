@@ -4,7 +4,7 @@ const { checkToken } = require("../controller/auth.controller");
 const router = express.Router();
 
 router.get('/', news.getAll);
-router.post('/', checkToken, news.create);
+router.post('/', news.create);
 router.get('/category-id', news.findByCategory)
 router.get('/:id', news.getById);
 router.put('/:id', checkToken, news.update);

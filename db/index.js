@@ -1,7 +1,6 @@
 const dbConfig = require("../config/config");
 const Sequelize = require("sequelize");
 
-console.log(dbConfig.development)
 
 const sequelize = new Sequelize(
     dbConfig.development.database,

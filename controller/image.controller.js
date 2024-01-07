@@ -4,12 +4,13 @@ class ImageController {
     async uploadImage(req, res) {
         try {
             const imagePath = req.file;
-            const { title } = req.body;
+            const { title, type } = req.body;
             const originalNameWithoutExtension = imagePath.originalname.split('.')[0];
             imagePath.path = `${imagePath.destination}${originalNameWithoutExtension}-${imagePath.filename}`;
             const data = {
                 link: imagePath.path,
-                title: title
+                title: title,
+                type: type
             }
             const newImage = await fileService.uploadImage(data);
             res.json({ success: true, data: newImage });

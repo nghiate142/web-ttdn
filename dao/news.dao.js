@@ -1,17 +1,18 @@
 const db = require("../db/index");
 class NewsDao {
     async create(data) {
-        const idCategory = data.CategoryId
+        const idCategory = parseInt(data.category_id)
         const findCategory = await db.models.Categories.findOne({ where: { id: idCategory } })
         if (findCategory === null) {
             return 'category not found'
         }
+        data.CategoryId = idCategory
         return db.models.News.create(data);
     }
 
     async findAll() {
         try {
-            const data = await db.models.News.findAll({include: [{ model: db.models.Categories, attributes: ['name'] }]})
+            const data = await db.models.News.findAll({ include: [{ model: db.models.Categories, attributes: ['name'] }] })
             return data.map(news => {
                 return {
                     id: news.id,

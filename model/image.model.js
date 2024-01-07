@@ -14,5 +14,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        type: {
+            type: DataTypes.ENUM("1","2"),
+            allowNull: false,
+            defaultValue: "1"
+        }
     });
 };

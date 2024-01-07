@@ -15,7 +15,6 @@ class NewController {
 
     async   findByCategory(req, res) {
         const id = req.body.category_id
-        console.log(id)
         const data = await newService.findByCategory(id)
         res.status(200).json({message: 'create success', data: data, status: 200})
     }

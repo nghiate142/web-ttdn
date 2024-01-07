@@ -12,7 +12,7 @@ const isVideo = (file) => {
 };
 
 const upload = multer({
-    dest: 'video/',
+    dest: 'uploads/',
     limits: { fileSize: 5 * 1024 * 1024 * 1024 },
     fileFilter: (req, file, cb) => {
         if (isVideo(file)) {
@@ -24,7 +24,7 @@ const upload = multer({
 });
 
 
-router.post('/', checkToken, upload.single('link'), video.uploadVideo);
+router.post('/', checkToken, upload.single('file'), video.uploadVideo);
 
 router.use((err, req, res, next) => {
     if (err instanceof multer.MulterError) {

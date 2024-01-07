@@ -21,7 +21,8 @@ class CategoriesService {
     }
 
     async delete(id) {
-        return await categoryDao.delete(id)
+        const deletedRowCount = await categoryDao.delete(id);
+        return deletedRowCount > 0;
     }
 }
 

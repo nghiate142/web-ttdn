@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true
         },
+        audio: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
         host_new: {
             type: DataTypes.ENUM('0', '1'),
             allowNull: true,

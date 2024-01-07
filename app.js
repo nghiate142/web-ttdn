@@ -21,6 +21,7 @@ const authRoutes = require('./routes/auth.router');
 const categoryRouter = require('./routes/category.router');
 const newRouter = require('./routes/new.router');
 const imageRouter = require('./routes/image.router');
+const audioRouter = require('./routes/audio.router');
 
 (async () => {
     await db.sequelize.sync();
@@ -32,6 +33,7 @@ app.use("/auth", authRoutes);
 app.use("/category", categoryRouter);
 app.use("/new", newRouter);
 app.use("/upload-image", imageRouter);
+app.use("/audio", audioRouter)
 
 
 app.listen(port);

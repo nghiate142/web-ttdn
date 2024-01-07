@@ -1,6 +1,6 @@
 
-class VideoController {
-    async uploadVideo(req, res) {
+class AudioController {
+    async uploadAudio(req, res) {
         const link = req.file;
         const url = process.env.URL
         const path = `${url}${link.path}`
@@ -8,4 +8,4 @@ class VideoController {
     }
 }
 
-module.exports = new VideoController()
+module.exports = new AudioController()

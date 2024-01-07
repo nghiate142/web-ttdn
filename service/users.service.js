@@ -1,10 +1,15 @@
 const userDao = require('../dao/users.dao')
 const bcrypt = require("bcryptjs");
 class UsersService {
-    async create (data) {
-        const salt = bcrypt.genSaltSync(10);
-        data.password = await bcrypt.hashSync(data.password, salt)
-        return await userDao.create(data)
+    async create(data) {
+        try {
+            const salt = bcrypt.genSaltSync(10);
+            data.password = await bcrypt.hashSync(data.password, salt);
+            return await userDao.create(data);
+        } catch (error) {
+            console.error('Error in create:', error);
+            throw new Error('Error creating user');
+        }
     }
     async findAll() {
         return await userDao.getAll()

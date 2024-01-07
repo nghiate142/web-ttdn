@@ -16,7 +16,18 @@ class ImageController {
             const newImage = await fileService.uploadImage(data);
             res.json({ success: true, data: newImage });
         } catch (error) {
-            console.error('Error uploading video:', error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    }
+
+    async uploadImageNew(req,res) {
+        try {
+            const imagePath = req.file;
+            console.log(imagePath)
+            const url = process.env.URL
+            const path = `${url}${imagePath.path}`
+            res.json({ success: true, data: path });
+        } catch (error) {
             res.status(500).json({ error: 'Internal Server Error' });
         }
     }

@@ -6,7 +6,6 @@ const path = require('path');
 const { checkToken } = require("../controller/auth.controller");
 
 
-let nameFile;
 const isImage = (file) => {
     const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
     const fileExtension = path.extname(file.originalname).toLowerCase();
@@ -25,7 +24,8 @@ const upload = multer({
         }
     },
 });
-router.post('/', upload.single('link'), image.uploadImage);
+router.post('/image-new', upload.single('file'), image.uploadImage);
+router.post('/', upload.single('file'), image.uploadImageNew)
 router.get('/:id', image.getUrlImage)
 router.get('/', checkToken, image.getAll)
 router.delete('/:id', checkToken, image.delete)

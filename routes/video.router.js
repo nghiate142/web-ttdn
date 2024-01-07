@@ -25,9 +25,6 @@ const upload = multer({
 
 
 router.post('/', checkToken, upload.single('link'), video.uploadVideo);
-router.get('/:id', video.getUrlVideo)
-router.get('/', checkToken, video.getAll)
-router.delete('/:id', checkToken, video.delete)
 
 router.use((err, req, res, next) => {
     if (err instanceof multer.MulterError) {

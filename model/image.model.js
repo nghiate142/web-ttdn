@@ -6,18 +6,9 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             primaryKey: true,
         },
-        title: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
         link: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        type: {
-            type: DataTypes.ENUM("1","2"),
-            allowNull: false,
-            defaultValue: "1"
-        }
     });
 };

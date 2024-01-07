@@ -10,14 +10,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        image: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
-        video: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
         content: {
             type: DataTypes.STRING,
             allowNull: false,

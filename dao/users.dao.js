@@ -3,7 +3,12 @@ const bcrypt = require("bcryptjs");
 
 class UsersDao {
     async create(data) {
-        return await db.models.Users.create(data)
+        try {
+            return await db.models.Users.create(data);
+        } catch (error) {
+            console.error('Error in create:', error);
+            throw new Error('Error creating user in database');
+        }
     }
 
     async getAll() {

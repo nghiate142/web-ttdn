@@ -10,6 +10,7 @@ const upload = multer({ storage: storage });
 router.get('/', news.getAll);
 router.post('/', checkToken, upload.array('sections', 10), news.create);
 router.get('/category-id', news.findByCategory);
+router.get('/host-new/:number', news.getByHostNew)
 router.get('/:id', news.getById);
 router.put('/:id', checkToken, news.update);
 router.delete('/:id', checkToken, news.delete);

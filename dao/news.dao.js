@@ -1,14 +1,15 @@
 const db = require("../db/index");
 class NewsDao {
     async create(data) {
-        const idCategory = parseInt(data.category_id)
-        const findCategory = await db.models.Categories.findOne({ where: { id: idCategory } })
-        if (findCategory === null) {
-            return 'category not found'
+        const idCategory = parseInt(data.category_id);
+        const findCategory = await db.models.Categories.findOne({ where: { id: idCategory } });
+        if (!findCategory) {
+            return 'category not found';
         }
-        data.CategoryId = idCategory
+        data.CategoryId = idCategory;
         return db.models.News.create(data);
     }
+
 
     async findAll() {
         try {
@@ -28,6 +29,10 @@ class NewsDao {
         } catch (error) {
             throw error;
         }
+    }
+
+    async finByHostNew(hostNew){
+        return await db.models.News.findAll({ where: {host_new: hostNew}})
     }
 
     async findById(id) {

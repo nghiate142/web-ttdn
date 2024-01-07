@@ -12,7 +12,7 @@ class AuthService {
             if (!checkPassword) {
                 throw new Error('false password');
             }
-            return 'success';
+            return findUser.dataValues;
     }
 
 }

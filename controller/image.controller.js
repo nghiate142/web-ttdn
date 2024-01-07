@@ -4,6 +4,7 @@ class ImageController {
     async uploadImage(req, res) {
         try {
             const imagePath = req.file;
+            console.log(imagePath)
             const { title, type } = req.body;
             const originalNameWithoutExtension = imagePath.originalname.split('.')[0];
             imagePath.path = `${imagePath.destination}${originalNameWithoutExtension}-${imagePath.filename}`;

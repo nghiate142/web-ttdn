@@ -23,6 +23,7 @@ const newRouter = require('./routes/new.router');
 const imageRouter = require('./routes/image.router');
 const audioRouter = require('./routes/audio.router');
 const linkRouter = require('./routes/link.router');
+const videoRouter = require('./routes/video.router');
 
 (async () => {
     await db.sequelize.sync();
@@ -34,8 +35,9 @@ app.use("/auth", authRoutes);
 app.use("/category", categoryRouter);
 app.use("/new", newRouter);
 app.use("/upload-image", imageRouter);
-app.use("/audio", audioRouter)
-app.use("/link", linkRouter)
+app.use("/audio", audioRouter);
+app.use("/link", linkRouter);
+app.use('/upload-video', videoRouter);
 
 
 app.listen(port);

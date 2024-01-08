@@ -11,8 +11,17 @@ const isVideo = (file) => {
     return allowedExtensions.includes(fileExtension);
 };
 
+const storage = multer.diskStorage({
+    destination: 'uploads/',
+    filename: (req, file, cb) => {
+        const fileExtension = path.extname(file.originalname).toLowerCase();
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        cb(null, uniqueSuffix + fileExtension);
+    },
+});
+
 const upload = multer({
-    dest: 'uploads/',
+    storage: storage,
     limits: { fileSize: 5 * 1024 * 1024 * 1024 },
     fileFilter: (req, file, cb) => {
         if (isVideo(file)) {
@@ -24,7 +33,7 @@ const upload = multer({
 });
 
 
-router.post('/', checkToken, upload.single('file'), video.uploadVideo);
+router.post('/', upload.single('file'), video.uploadVideo);
 
 router.use((err, req, res, next) => {
     if (err instanceof multer.MulterError) {

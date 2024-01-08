@@ -28,16 +28,7 @@ class FileService {
     }
 
     async getAllImage() {
-        let data = [];
-        const record = await image.findAll()
-        for (let i = 0; i < record.length; i++) {
-            let link = {}
-            link.id = record[i].dataValues.id
-            link.link = url+record[i].dataValues.link
-            link.title = record[i].dataValues.title
-            data.push(link)
-        }
-        return data
+        return await image.findAll()
     }
 
     async deleteImage(id) {

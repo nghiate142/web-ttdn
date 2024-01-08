@@ -8,7 +8,6 @@ class ImageController {
                 link: imagePath.path,
                 title: imagePath.originalname,
             }
-            console.log(data)
             const newImage = await fileService.uploadImage(data);
             res.json({ success: true, data: newImage });
         } catch (error) {
@@ -32,18 +31,20 @@ class ImageController {
             const id = req.params.id
             const url = process.env.URL
             const image = await fileService.getUrlImage(id)
-            console.log(image)
             const imageUrl = `${url}${image.link}`;
             return res.status(200).json({ success: true, data: imageUrl });
         } catch (error) {
-            console.log(error)
             res.status(500).json({ error: 'Internal Server Error' });
         }
     }
 
     async getAll(req, res) {
-        const data = await fileService.getAllImage()
-        res.status(200).json({ success: true, data: data });
+        try {
+            const data = await fileService.getAllImage()
+            res.status(200).json({ success: true, data: data });
+        } catch (error) {
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
 
     async delete(req, res) {

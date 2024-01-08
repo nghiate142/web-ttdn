@@ -7,7 +7,6 @@ async function login(req, res) {
     const data = req.body;
     try {
         const user = await authService.login(data);
-        console.log(user)
         const accessToken = jwt.sign({ userId: parseInt(user.id) }, process.env.SECRET, { expiresIn: '24h' });
         loggedInUsers[user.id] = accessToken;
         res.status(200).json({

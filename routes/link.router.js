@@ -14,7 +14,6 @@ const upload = multer({
     dest: 'uploads/',
     limits: { fileSize: 2 * 1024 * 1024 },
     fileFilter: (req, file, cb) => {
-        console.log(file)
         if (isImage(file)) {
             cb(null, true);
         } else {

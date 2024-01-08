@@ -1,7 +1,7 @@
 const image = require('../dao/images.dao')
 
 
-
+const url = process.env.URL
 class FileService {
     // async uploadVideo(data) {
     //         return await video.create(data)
@@ -28,7 +28,16 @@ class FileService {
     }
 
     async getAllImage() {
-        return await image.findAll()
+        let data = [];
+        const record = await image.findAll()
+        for (let i = 0; i < record.length; i++) {
+            let link = {}
+            link.id = record[i].dataValues.id
+            link.link = url+record[i].dataValues.link
+            link.title = record[i].dataValues.title
+            data.push(link)
+        }
+        return data
     }
 
     async deleteImage(id) {

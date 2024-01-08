@@ -14,6 +14,7 @@ class ImagesDao {
     }
 
     async findById(id) {
+        console.log(id)
         return await db.models.Image.findOne({ where: { id: id } })
     }
 

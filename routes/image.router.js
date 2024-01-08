@@ -16,7 +16,6 @@ const upload = multer({
     dest: 'uploads/',
     limits: { fileSize: 2 * 1024 * 1024 },
     fileFilter: (req, file, cb) => {
-        console.log(file)
         if (isImage(file)) {
             cb(null, true);
         } else {
@@ -27,8 +26,8 @@ const upload = multer({
 router.post('/image-new', upload.single('file'), image.uploadImage);
 router.post('/', upload.single('file'), image.uploadImageNew)
 router.get('/:id', image.getUrlImage)
-router.get('/', checkToken, image.getAll)
-router.delete('/:id', checkToken, image.delete)
+router.get('/', image.getAll)
+router.delete('/:id', image.delete)
 
 router.use((err, req, res, next) => {
     if (err instanceof multer.MulterError) {

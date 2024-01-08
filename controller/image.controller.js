@@ -4,15 +4,11 @@ class ImageController {
     async uploadImage(req, res) {
         try {
             const imagePath = req.file;
-            console.log(imagePath)
-            const { title, type } = req.body;
-            const originalNameWithoutExtension = imagePath.originalname.split('.')[0];
-            imagePath.path = `${imagePath.destination}${originalNameWithoutExtension}-${imagePath.filename}`;
             const data = {
                 link: imagePath.path,
-                title: title,
-                type: type
+                title: imagePath.originalname,
             }
+            console.log(data)
             const newImage = await fileService.uploadImage(data);
             res.json({ success: true, data: newImage });
         } catch (error) {
@@ -23,7 +19,6 @@ class ImageController {
     async uploadImageNew(req,res) {
         try {
             const imagePath = req.file;
-            console.log(imagePath)
             const url = process.env.URL
             const path = `${url}${imagePath.path}`
             res.json({ success: true, data: path });
@@ -33,11 +28,17 @@ class ImageController {
     }
 
     async getUrlImage(req, res) {
-        const id = req.params.id
-        const url = process.env.URL
-        const image = await fileService.getUrlImage(id)
-        const imageUrl = `${url}${image.link}`;
-        return res.status(200).json({ success: true, data: imageUrl });
+        try {
+            const id = req.params.id
+            const url = process.env.URL
+            const image = await fileService.getUrlImage(id)
+            console.log(image)
+            const imageUrl = `${url}${image.link}`;
+            return res.status(200).json({ success: true, data: imageUrl });
+        } catch (error) {
+            console.log(error)
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
     }
 
     async getAll(req, res) {

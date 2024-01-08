@@ -32,7 +32,7 @@ class ImageController {
             const url = process.env.URL
             const image = await fileService.getUrlImage(id)
             const imageUrl = `${url}${image.link}`;
-            return res.status(200).json({ success: true, data: imageUrl });
+            return res.status(200).json({ success: true, data: image.link });
         } catch (error) {
             res.status(500).json({ error: 'Internal Server Error' });
         }

@@ -32,7 +32,7 @@ class LinksController {
             const path = `${url}${imagePath.path}`
             const dataCreate = {
                 link: data.link,
-                image: path
+                image: imagePath.path
             }
             const create = await linkService.create(dataCreate);
             res.status(201).json({ message: 'create success', data: create, status: 201 });

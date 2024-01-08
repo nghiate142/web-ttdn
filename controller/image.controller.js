@@ -15,12 +15,12 @@ class ImageController {
         }
     }
 
-    async uploadImageNew(req,res) {
+    async uploadImageNew(req, res) {
         try {
             const imagePath = req.file;
             const url = process.env.URL
             const path = `${url}${imagePath.path}`
-            res.json({ success: true, data: path });
+            res.json({ success: true, data: imagePath.path });
         } catch (error) {
             res.status(500).json({ error: 'Internal Server Error' });
         }

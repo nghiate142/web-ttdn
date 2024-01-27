@@ -1,7 +1,28 @@
 const image = require('../dao/images.dao')
+const video = require('../dao/videos.dao')
 
 
 class FileService {
+    async uploadVideo(data) {
+        return await video.create(data)
+    }
+
+    async getUrlVideo(id) {
+        return await video.findById(id)
+    }
+
+    async getAllVideo() {
+        return await video.findAll()
+    }
+
+    async deleteVideo(id) {
+        return await video.delete(id)
+    }
+
+
+    async uploadImage(data) {
+        return await image.create(data);
+    }
     async uploadImage(data) {
         return await image.create(data);
     }

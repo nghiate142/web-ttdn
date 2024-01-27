@@ -27,6 +27,7 @@ const imageRouter = require('./routes/image.router');
 const audioRouter = require('./routes/audio.router');
 const linkRouter = require('./routes/link.router');
 const videoRouter = require('./routes/video.router');
+const { log } = require('console');
 
 (async () => {
     await db.sequelize.sync();

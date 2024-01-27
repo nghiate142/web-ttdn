@@ -31,6 +31,14 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.ENUM('0', '1'),
             allowNull: true,
             defaultValue: '1'
-        }
+        },
+        link: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        avatar: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
     });
 };

@@ -34,6 +34,8 @@ const upload = multer({
 
 
 router.post('/', upload.single('file'), video.uploadVideo);
+router.get('/:id', video.getUrlVideo)
+router.get('/', video.getAll)
 
 router.use((err, req, res, next) => {
     if (err instanceof multer.MulterError) {

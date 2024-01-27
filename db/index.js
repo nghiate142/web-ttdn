@@ -22,6 +22,7 @@ db.models.News = require("../model/news.model")(sequelize, Sequelize.DataTypes);
 db.models.Image = require("../model/image.model")(sequelize, Sequelize.DataTypes)
 db.models.Video = require("../model/videos.model")(sequelize, Sequelize.DataTypes)
 db.models.link = require("../model/links.model")(sequelize, Sequelize.DataTypes)
+db.models.audio = require("../model/audios.model")(sequelize, Sequelize.DataTypes)
 
 
 db.models.Categories.hasMany(db.models.News)

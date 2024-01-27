@@ -24,6 +24,8 @@ const upload = multer({
 });
 
 router.post('/', upload.single('file'), audioController.uploadAudio);
+router.get('/:id', audioController.getUrlAudio)
+router.get('/', audioController.getAll)
 
 router.use((err, req, res, next) => {
     if (err instanceof multer.MulterError) {

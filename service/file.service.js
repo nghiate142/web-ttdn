@@ -1,5 +1,6 @@
 const image = require('../dao/images.dao')
 const video = require('../dao/videos.dao')
+const audio = require("../dao/audios.dao")
 
 
 class FileService {
@@ -23,9 +24,6 @@ class FileService {
     async uploadImage(data) {
         return await image.create(data);
     }
-    async uploadImage(data) {
-        return await image.create(data);
-    }
 
     async getUrlImage(id) {
         return await image.findById(id)
@@ -37,6 +35,23 @@ class FileService {
 
     async deleteImage(id) {
         return await image.delete(id)
+    }
+
+
+    async uploadAudio(data) {
+        return await audio.create(data);
+    }
+
+    async getUrlAudio(id) {
+        return await audio.findById(id)
+    }
+
+    async getAllAudio() {
+        return await audio.findAll()
+    }
+
+    async deleteAudio(id) {
+        return await audio.delete(id)
     }
 }
 

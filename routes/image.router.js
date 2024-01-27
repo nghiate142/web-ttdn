@@ -32,8 +32,8 @@ const upload = multer({
     },
 });
 
-router.post('/image-new', upload.single('file'), image.uploadImage);
-router.post('/', upload.single('file'), image.uploadImageNew);
+router.post('/', upload.single('file'), image.uploadImage);
+// router.post('/', upload.single('file'), image.uploadImageNew);
 router.get('/:id', image.getUrlImage);
 router.get('/', image.getAll);
 router.delete('/:id', image.delete);

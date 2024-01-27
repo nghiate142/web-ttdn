@@ -23,6 +23,7 @@ class NewsDao {
                     link_image: news.image,
                     link_video: news.video,
                     category_id: news.CategoryId,
+                    avatar: news.avatar,
                     category_name: news.Category ? news.Category.name : null
                 };
             });
@@ -31,8 +32,8 @@ class NewsDao {
         }
     }
 
-    async finByHostNew(hostNew){
-        return await db.models.News.findAll({ where: {host_new: hostNew}})
+    async finByHostNew(hostNew) {
+        return await db.models.News.findAll({ where: { host_new: hostNew } })
     }
 
     async findById(id) {

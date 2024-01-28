@@ -11,7 +11,7 @@ class ImageController {
             const imagePath = req.file;
             const data = {
                 link: imagePath.path,
-                title: unidecode(imagePath.originalname),
+                title: imagePath.originalname,
             }
             const newImage = await fileService.uploadImage(data);
             res.json({ success: true, data: newImage });

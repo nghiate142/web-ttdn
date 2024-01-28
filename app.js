@@ -27,12 +27,30 @@ const imageRouter = require('./routes/image.router');
 const audioRouter = require('./routes/audio.router');
 const linkRouter = require('./routes/link.router');
 const videoRouter = require('./routes/video.router');
-const { log } = require('console');
 
 (async () => {
     await db.sequelize.sync();
 })();
 
+
+app.use(async (req, res, next) => {
+    try {
+        await db.models.accessLog.create({
+            ipAddress: req.ip,
+            method: req.method,
+            path: req.path,
+        });
+        next();
+    } catch (error) {
+        console.error('Error saving access log:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+app.get('/log-length', async (req, res) => {
+    const accessLogs = await db.models.accessLog.findAll();
+    res.send(`Number of accesses: ${accessLogs.length}`);
+});
 
 app.use("/user", userRoutes);
 app.use("/auth", authRoutes);

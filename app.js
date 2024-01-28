@@ -35,11 +35,13 @@ const videoRouter = require('./routes/video.router');
 
 app.use(async (req, res, next) => {
     try {
-        await db.models.accessLog.create({
-            ipAddress: req.ip,
-            method: req.method,
-            path: req.path,
-        });
+        if (req.method === 'GET' && !req.path.startsWith('/upload')) {
+            await db.models.accessLog.create({
+                ipAddress: req.ip,
+                method: req.method,
+                path: req.path,
+            });
+        }
         next();
     } catch (error) {
         console.error('Error saving access log:', error);

@@ -1,12 +1,17 @@
 const fileService = require("../service/file.service")
+const unidecode = require('unidecode');
 
 class ImageController {
+    async convertToEnglishWithoutDiacritics(input) {
+        return unidecode(input);
+    };
+
     async uploadImage(req, res) {
         try {
             const imagePath = req.file;
             const data = {
                 link: imagePath.path,
-                title: imagePath.originalname,
+                title: unidecode(imagePath.originalname),
             }
             const newImage = await fileService.uploadImage(data);
             res.json({ success: true, data: newImage });

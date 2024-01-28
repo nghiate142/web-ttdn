@@ -7,8 +7,6 @@ class VideoController {
             link: link,
             title: title
         };
-        console.log(data);
-        console.log(link)
         const newVideo = await fileService.uploadVideo(data);
         res.json({ success: true, data: newVideo });
     }

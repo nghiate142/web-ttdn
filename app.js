@@ -35,7 +35,7 @@ const videoRouter = require('./routes/video.router');
 
 app.use(async (req, res, next) => {
     try {
-        if (req.method === 'GET' && !req.path.startsWith('/upload')) {
+        if (req.method === 'GET' && !req.path.startsWith('/upload') && !req.path.startsWith('/upload-video') && !req.path.startsWith('/log-length')) {
             await db.models.accessLog.create({
                 ipAddress: req.ip,
                 method: req.method,

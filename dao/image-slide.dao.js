@@ -1,24 +1,24 @@
 const db = require("../db/index");
-class ImagesDao {
+class ImageSlideDao {
     async create(data) {
         try {
-            return db.models.Image.create(data);
+            return db.models.image_slide.create(data);
         } catch (error) {
             throw 'upload image error'
         }
     }
 
     async findAll() {
-        return await db.models.Image.findAll()
+        return await db.models.image_slide.findAll()
     }
 
     async findById(id) {
-        return await db.models.Image.findOne({ where: { id: id } })
+        return await db.models.image_slide.findOne({ where: { id: id } })
     }
 
     async delete(id) {
-        return await db.models.Image.destroy({ where: { id: id } })
+        return await db.models.image_slide.destroy({ where: { id: id } })
     }
 }
 
-module.exports = new ImagesDao()
+module.exports = new ImageSlideDao()

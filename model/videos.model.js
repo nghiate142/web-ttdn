@@ -14,5 +14,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        // hot_video: {
+        //     type: DataTypes.ENUM('0', '1'),
+        //     allowNull: true,
+        //     defaultValue: '0'
+        // },
     });
 };

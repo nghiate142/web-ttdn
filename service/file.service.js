@@ -57,19 +57,19 @@ class FileService {
     }
 
     async uploadImageSlide(data) {
-        return await audio.create(data);
+        return await imageSlideService.create(data);
     }
 
     async getUrlImageSlide(id) {
-        return await audio.findById(id)
+        return await imageSlideService.findById(id)
     }
 
     async getAllImageSlide() {
-        return await audio.findAll()
+        return await imageSlideService.findAll()
     }
 
     async deleteImageSlide(id) {
-        return await audio.delete(id)
+        return await imageSlideService.delete(id)
     }
 }
 

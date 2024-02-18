@@ -20,19 +20,31 @@ const dataUser = {
 
 const dataCategory = [
     {
-        name: 'Tin Tức-Sự Kiện'
-    },
-    {
-        name: 'Tuyên truyền Cổ Động'
+        name: 'Tuyên Truyền Cổ Động - Văn Hoá'
     },
     {
         name: 'Nghệ Thuật Quần Chúng'
     },
     {
-        name: 'Tuyên Truyền Lưu Động'
+        name: 'Hoạt Động Tuyên Truyền'
     },
     {
-        name: 'Chiếu Phim-Lưu Động'
+        name: 'Kịch Bản Tuyên Truyền'
+    },
+    {
+        name: 'Nghiệp Vụ Điện Ảnh'
+    },
+    {
+        name: 'Văn Bản Chỉ Đạo - Điều Hành'
+    },
+    {
+        name: 'Khẩu Lệnh'
+    },
+    {
+        name: 'Bài Phát Thanh Bộ Triển Lãm'
+    },
+    {
+        name: 'Bộ Tranh Cổ Động'
     },
 ]
 

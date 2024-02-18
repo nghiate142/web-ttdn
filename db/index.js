@@ -24,6 +24,7 @@ db.models.Video = require("../model/videos.model")(sequelize, Sequelize.DataType
 db.models.link = require("../model/links.model")(sequelize, Sequelize.DataTypes)
 db.models.Audio = require("../model/audios.model")(sequelize, Sequelize.DataTypes)
 db.models.accessLog = require("../model/accesslog.model")(sequelize, Sequelize.DataTypes)
+db.models.image_slide = require("../model/image-slide.model")(sequelize, Sequelize.DataTypes)
 
 
 db.models.Categories.hasMany(db.models.News)

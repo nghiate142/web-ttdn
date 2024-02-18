@@ -27,6 +27,7 @@ const imageRouter = require('./routes/image.router');
 const audioRouter = require('./routes/audio.router');
 const linkRouter = require('./routes/link.router');
 const videoRouter = require('./routes/video.router');
+const imageSlideRouter = require("./routes/image-slide.router");
 
 (async () => {
     await db.sequelize.sync();
@@ -63,6 +64,7 @@ app.use("/upload-image", imageRouter);
 app.use("/audio", audioRouter);
 app.use("/link", linkRouter);
 app.use('/upload-video', videoRouter);
+app.use('/upload-image-slide', imageSlideRouter)
 
 
 app.listen(port);
